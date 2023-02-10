@@ -1,7 +1,7 @@
 export class CurrencyService {
-  static async currencyApiCall(baseCurrency) {
+  static async currencyApiCall() {
     try {
-      const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`);
+      const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`);
       const jsonResponse = await response.json();
       if (!response.ok) {
         const errMsg = `${response.status}, ${jsonResponse['error-type']}`; 
