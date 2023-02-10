@@ -1,15 +1,16 @@
 import { CurrencyService, CurrencyTransaction } from './js/Currency';
+//import bgImg from './wallTexture.jpg'
 import './css/styles.css';
 
 // UI Logic
 const calculate = async (jsonfiedResponse,transactionObj) => {
-  console.log(jsonfiedResponse);
-  console.log(transactionObj);
+  console.log(jsonfiedResponse['conversion_rates'][transactionObj.targetCurrency] * transactionObj.quantity);
   printElements('number');
 }
 
 const handleAPI = async (transactionObj) => {
   const response = await CurrencyService.currencyApiCall(transactionObj.baseCurrency);
+  console.log(response);
   if (response) {
     calculate(response,transactionObj);
   } else {
@@ -21,14 +22,15 @@ const handleFormSubmission = (event) => {
   event.preventDefault();
   // read in usr data from form
   let quantityVal = document.querySelector('#quantity').value;
-  let baseCurrencyVal = document.querySelector('#baseCurrency').value;
-  let targetCurrencyVal = document.querySelector('#targetCurrency').value;
+//  let baseCurrencyVal = document.querySelector('#baseCurrency').value;
+//  let targetCurrencyVal = document.querySelector('#targetCurrency').value;
   document.querySelector('#quantity').value = null;
   document.querySelector('#baseCurrency').value = null;
   document.querySelector('#targetCurrency').value = null;
 
   // store usr data in object
-  const transaction = new CurrencyTransaction(quantityVal,baseCurrencyVal,targetCurrencyVal);
+  const transaction = new CurrencyTransaction('USD','EUR',quantityVal);
+  console.log(transaction);
   handleAPI(transaction);
 }
 

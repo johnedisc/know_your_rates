@@ -7,12 +7,33 @@
 </head>
 <body>
   <div class="container">
-    <form>
-      <input id="quantity" type="text" name="quantity" placeholder="enter the amount to be converted">
-      <button type="submit" id="formBtn">convert</button>
-    </form>
-    <div id="response">
+
+    <div id='grid'>
+      <div id='baseCurrency'> 
+      </div>
+      <div id='targetCurrency'>
+      </div>
+      <div id='responseArea'>
+        <div id='response'>
+        </div>
+      </div>
     </div>
+    <form>
+        <input class='button' id="quantity" type="text" name="quantity" placeholder="enter the amount to be converted">
+        <div class='button'>
+          <button type="click" id="baseCurrencyBtn">base currency</button>
+          <div>&#129058</div>
+        </div>
+        <div class='button'>
+          <button type="click" id="targetCurrencyBtn">target currency</button>
+          <div>&#129058</div>
+        </div>
+        <div class='button'>
+          <button type="submit" id="formBtn">convert</button>
+          <div>&#129058</div>
+        </div>
+    </form>
+    
   </div>
 </body>
 </html>

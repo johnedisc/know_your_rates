@@ -2,6 +2,7 @@
   font-family: 'Quicksand', sans-serif;
   --main-bg-color: #D1E7F5;
   --main-font-color: #2F8AD5;
+  --border-weight: 1px;
 }
 
 body {
@@ -9,10 +10,31 @@ body {
   color: var(--main-font-color);
 }
 
+form {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  
+}
+
 button, input {
   background-color: inherit;
   border-color: var(--main-font-color);
   color: var(--main-font-color);
   font-family: inherit;
+  border: none;
+}
+
+input {
+  background-color: white;
+}
+
+.button {
+  display: flex; 
+  border-width: var(--border-weight);
   border-style: solid;
+  border-color: var(--main-font-color);
+}
+
+::placeholder {
+  color: inherit;
 }
