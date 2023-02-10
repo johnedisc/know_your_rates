@@ -1,10 +1,10 @@
-import { ClassName } from './js/className';
+import { CurrencyService } from './js/className';
 import './css/styles.css';
 
 // UI Logic
 
-const handleAPI = async (query) => {
-  const response = await Class.staticMethod(query);
+const handleAPI = async (baseCurrency) => {
+  const response = await CurrencyService.currencyApiCall(baseCurrency);
   if (response) {
     printElements(response);
   } else {

@@ -1,5 +1,5 @@
-export class Currency {
-  static async apiCall(baseCurrency) {
+export class CurrencyService {
+  static async currencyApiCall(baseCurrency) {
     try {
       const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`);
       const jsonResponse = await response.json();
