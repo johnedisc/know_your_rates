@@ -1,22 +1,21 @@
-# []()
+# [know-your-rates!](https://github.com/johnedisc/know_your_rates)
 
-#### by [johnedisc](https://johnedisc.github.io/portfolio/)
+#### by [johnedisc](https://johnedisc.github.io)
 
-#### an excercise constructing, accessing, and printing objects to the DOM
+#### an excercise in making api calls, dealing with asynchronous processes, and parsing json data
 
 ## technologies used
 
 * html
 * css
 * javascript
-* testing with jest
 
 ## description
 
 ## setup/installation requirements
 
-* visit the site [here]()
-* clone down the [repository from github]() inside the directory of your choosing
+* visit the site [here](https://github.com/johnedisc/know_your_rates)
+* clone down the [repository from github](https://github.com/johnedisc/know_your_rates) inside the directory of your choosing
 ```bash
 git clone 
 ```
@@ -24,9 +23,10 @@ git clone
 ```bash
 cd ./your/directory/here/
 ```
-* create a .env and add an api key
+* go to [ExchangeRateAPI](https://www.exchangerate-api.com/) and create a free account to get your API Key
+* create an .env and add an api key
 ```bash
-echo API_KEY=YOUR_KEY_HERE > .env
+echo API_KEY=ENTER_YOUR_KEY_HERE > .env
 ```
 * install dependencies
 ```bash
