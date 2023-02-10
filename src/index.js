@@ -2,10 +2,10 @@ import { CurrencyService, CurrencyTransaction } from './js/Currency';
 //import bgImg from './wallTexture.jpg'
 import './css/styles.css';
 
-// UI Logic
 const calculate = async (jsonfiedResponse,transactionObj) => {
-  console.log(jsonfiedResponse['conversion_rates'][transactionObj.targetCurrency] * transactionObj.quantity);
-  printElements('number');
+  const convertedTotal = jsonfiedResponse['conversion_rates'][transactionObj.targetCurrency] * transactionObj.quantity;
+  const twoDecimals = Math.floor(convertedTotal * 100) / 100;
+  printElements(twoDecimals);
 }
 
 const handleAPI = async (transactionObj) => {
@@ -18,6 +18,7 @@ const handleAPI = async (transactionObj) => {
   }
 }
 
+// UI Logic
 const handleFormSubmission = (event) => {
   event.preventDefault();
   // read in usr data from form
@@ -35,7 +36,7 @@ const handleFormSubmission = (event) => {
 }
 
 const printElements = (results) => {
-  return results;
+  document.querySelector('#response').innerText = results;
 }
 
 const printError = (error) => {
