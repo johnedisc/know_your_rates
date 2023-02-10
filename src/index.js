@@ -1,16 +1,17 @@
-import { CurrencyService } from './js/Currency';
+import { CurrencyService, CurrencyTransaction } from './js/Currency';
 import './css/styles.css';
 
 // UI Logic
-const calculate = async (json,currency,quantity) => {
-  console.log('hi',json,currency,quantity);
+const calculate = async (jsonfiedResponse,transactionObj) => {
+  console.log(jsonfiedResponse);
+  console.log(transactionObj);
   printElements('number');
 }
 
-const handleAPI = async (baseCurrency) => {
-  const response = await CurrencyService.currencyApiCall(baseCurrency);
+const handleAPI = async (transactionObj) => {
+  const response = await CurrencyService.currencyApiCall(transactionObj.baseCurrency);
   if (response) {
-    calculate(response);
+    calculate(response,transactionObj);
   } else {
     printError(response);
   }
@@ -18,9 +19,17 @@ const handleAPI = async (baseCurrency) => {
 
 const handleFormSubmission = (event) => {
   event.preventDefault();
-  let quantity = document.querySelector('#quantity').value;
+  // read in usr data from form
+  let quantityVal = document.querySelector('#quantity').value;
+  let baseCurrencyVal = document.querySelector('#baseCurrency').value;
+  let targetCurrencyVal = document.querySelector('#targetCurrency').value;
   document.querySelector('#quantity').value = null;
-  calculate(handleAPI(),'EEU',quantity);
+  document.querySelector('#baseCurrency').value = null;
+  document.querySelector('#targetCurrency').value = null;
+
+  // store usr data in object
+  const transaction = new CurrencyTransaction(quantityVal,baseCurrencyVal,targetCurrencyVal);
+  handleAPI(transaction);
 }
 
 const printElements = (results) => {

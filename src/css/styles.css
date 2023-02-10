@@ -1,3 +1,18 @@
+:root {
+  font-family: 'Quicksand', sans-serif;
+  --main-bg-color: #D1E7F5;
+  --main-font-color: #2F8AD5;
+}
+
 body {
-  background-color: salmon;
+  background-color: var(--main-bg-color);
+  color: var(--main-font-color);
+}
+
+button, input {
+  background-color: inherit;
+  border-color: var(--main-font-color);
+  color: var(--main-font-color);
+  font-family: inherit;
+  border-style: solid;
 }

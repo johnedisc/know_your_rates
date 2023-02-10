@@ -12,6 +12,9 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   devServer: {
+    client: {
+      overlay: false,
+    },
     open: {
       app: {
         name: 'google-chrome',
