@@ -1,5 +1,6 @@
 import { CurrencyService, CurrencyTransaction } from './js/Currency';
 //import bgImg from './wallTexture.jpg'
+import { divLoop } from './js/divLoop'
 import './css/styles.css';
 
 const calculate = async (jsonfiedResponse,transactionObj) => {
@@ -10,7 +11,6 @@ const calculate = async (jsonfiedResponse,transactionObj) => {
 
 const handleAPI = async (transactionObj) => {
   const response = await CurrencyService.currencyApiCall(transactionObj.baseCurrency);
-  console.log(response);
   if (response) {
     calculate(response,transactionObj);
   } else {
@@ -44,5 +44,7 @@ const printError = (error) => {
 }
 
 window.addEventListener('load', () => {
+  document.getElementById('baseCurrencyBtn').addEventListener('click', divLoop);
+  document.getElementById('targetCurrencyBtn').addEventListener('click', divLoop);
   document.querySelector('form').addEventListener('submit', handleFormSubmission);
 });

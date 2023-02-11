@@ -38,3 +38,24 @@ input {
 ::placeholder {
   color: inherit;
 }
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+#grid > div > * {
+  align-items: center;
+}
+
+#baseCurrency {
+  grid-column: 2/3;
+}
+
+#targetCurrency {
+  grid-column: 3/4;
+}
+
+#responseArea {
+  grid-column: 0/1;
+}

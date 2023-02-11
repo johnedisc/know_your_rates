@@ -1,10 +1,21 @@
+
 export class CurrencyService {
+  
   static async currencyApiCall(baseCurrency) {
+    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`);
+    return this.parseJSON(response);
+  }
+
+  static async countryCode() {
+    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
+    return this.parseJSON(response);
+  }
+
+  static async parseJSON(fetch) {
     try {
-      const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`);
-      const jsonResponse = await response.json();
-      if (!response.ok) {
-        const errMsg = `${response.status}, ${jsonResponse['error-type']}`; 
+      const jsonResponse = await fetch.json();
+      if (!fetch.ok) {
+        const errMsg = `${fetch.status}, ${jsonResponse['error-type']}`; 
         return errMsg;
       } else {
         return jsonResponse;
