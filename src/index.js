@@ -40,11 +40,11 @@ const printElements = (results) => {
 }
 
 const printError = (error) => {
-  return error;
+  document.querySelector('#response').innerText = error;
 }
 
 window.addEventListener('load', () => {
   document.getElementById('baseCurrencyBtn').addEventListener('click', divLoop);
   document.getElementById('targetCurrencyBtn').addEventListener('click', divLoop);
-  document.querySelector('form').addEventListener('submit', handleFormSubmission);
+  document.querySelector('#formBtn').addEventListener('click', handleFormSubmission);
 });
