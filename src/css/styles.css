@@ -3,6 +3,7 @@
   --main-bg-color: #D1E7F5;
   --main-font-color: #2F8AD5;
   --border-weight: 1px;
+  --gutter: 1em;
 }
 
 body {
@@ -13,16 +14,20 @@ body {
 form {
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  
+  gap: var(--gutter);
 }
 
-button, input {
+button, input, select, option {
   background-color: inherit;
   border-color: var(--main-font-color);
   color: var(--main-font-color);
   font-family: inherit;
   border: none;
   font-size: 1.2rem;
+}
+
+button, input {
+  padding: .7em;
 }
 
 input {
@@ -42,7 +47,8 @@ input {
 
 #grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(3,1fr);
+  gap: var(--gutter);
 }
 
 #grid > div > * {
@@ -58,11 +64,21 @@ input {
 }
 
 #response {
-  grid-column: 0/1;
-}
-
-#baseCurrency>div:hover, #targetCurrency>div:hover {
+  grid-column: 1/2;
   font-size: 2rem;
-  color: black;
+  font-weight: 700;
 }
 
+#baseCurrency>option:hover, #targetCurrency>option:hover {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+#baseCurrency>option:checked, #targetCurrency>option:checked {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+select {
+  display: none;
+}

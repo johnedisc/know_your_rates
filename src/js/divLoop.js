@@ -12,17 +12,17 @@ const print = (divDestination,response) => {
   const targetEl = document.getElementById('targetCurrency');
   if (divDestination.target.id === "baseCurrencyBtn") {
     response.map(el => {
-      let divEl = document.createElement('div');
-      divEl.append(el[1]);
-      divEl.setAttribute('id',el[0]);
-      baseEl.append(divEl);
+      let optionEl = document.createElement('option');
+      optionEl.append(el[1]);
+      optionEl.setAttribute('value',el[0]);
+      baseEl.append(optionEl);
     });
   } else {
     response.map(el => {
-      let divEl = document.createElement('div');
-      divEl.append(el[1]);
-      divEl.setAttribute('id',el[0]);
-      targetEl.append(divEl);
+      let optionEl = document.createElement('option');
+      optionEl.append(el[1]);
+      optionEl.setAttribute('value',el[0]);
+      targetEl.append(optionEl);
     });
   }
 }
