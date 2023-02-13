@@ -17,14 +17,14 @@
 * visit the site [here](https://github.com/johnedisc/know_your_rates)
 * clone down the [repository from github](https://github.com/johnedisc/know_your_rates) inside the directory of your choosing
 ```bash
-git clone 
+git clone https://github.com/johnedisc/know_your_rates.git
 ```
 * move into that directory
 ```bash
-cd ./your/directory/here/
+cd ./your/directory/here/know_your_rates/
 ```
 * go to [ExchangeRateAPI](https://www.exchangerate-api.com/) and create a free account to get your API Key
-* create an .env and add an api key
+* create an .env in the root directory and add an api key
 ```bash
 echo API_KEY=ENTER_YOUR_KEY_HERE > .env
 ```
@@ -38,6 +38,8 @@ npm run start
 ```
 
 ## known Bugs
+
+* style is still being ironed out
 
 ## license
 
