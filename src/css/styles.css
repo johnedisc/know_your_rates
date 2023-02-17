@@ -2,7 +2,7 @@
   font-family: 'Quicksand', sans-serif;
   --main-bg-color: #D1E7F5;
   --main-font-color: #2F8AD5;
-  --border-weight: 1px;
+  --border-weight: 1.5px;
   --gutter: 1em;
 }
 
@@ -17,6 +17,12 @@ form {
   gap: var(--gutter);
 }
 
+form > * {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 button, input, select, option {
   background-color: inherit;
   border-color: var(--main-font-color);
@@ -24,6 +30,12 @@ button, input, select, option {
   font-family: inherit;
   border: none;
   font-size: 1.2rem;
+}
+
+img#arrow {
+  color: var(--main-font-color);
+  width:1vh;
+  height:1vh;
 }
 
 button, input {
@@ -38,6 +50,7 @@ input {
   display: flex; 
   border-width: var(--border-weight);
   border-style: solid;
+  border-radius: 7px;
   border-color: var(--main-font-color);
 }
 
