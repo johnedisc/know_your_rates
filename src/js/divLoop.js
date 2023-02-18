@@ -1,8 +1,12 @@
 import { CurrencyService } from './Currency'
+import { printError } from '../index.js'
 
 export async function divLoop(event) {
   const response = await CurrencyService.fetchData();
   console.log(response);
+  if (!response['supported_codes']) {
+    return printError(response);
+  }
   const codeArr = response['supported_codes'];
   return print(event,codeArr);
 }

@@ -1,22 +1,32 @@
 
 export class CurrencyService {
-  
-  static async currencyApiCall(baseCurrency) {
-    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`);
-    return this.parseJSON(response);
-  }
+
+//  static async currencyApiCall(baseCurrency) {
+//    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`);
+//    return this.parseJSON(response);
+//  }
+//
+//  static async countryCode() {
+//    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
+//    return this.parseJSON(response);
+//  }
 
   static async fetchData(code) {
     try {
-      if (code === '') {
-        const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
-      }
-      const jsonResponse = await fetch.json();
-      if (!fetch.ok) {
-        const errMsg = `${fetch.status}, ${jsonResponse['error-type']}`; 
-        return errMsg;
+      let response;
+      //countryCode or convert numbers
+      if (!code) {  
+        response = await fetch(`https://v.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
       } else {
-        return jsonResponse;
+        response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${code}`);
+      }
+      const jsonfiedResponse = await response.json();
+
+      if (jsonfiedResponse.result === "error") {
+        const errMsg = `${response.status}, ${jsonfiedResponse['error-type']}`; 
+        throw new Error(errMsg);
+      } else {
+        return jsonfiedResponse
       }
     } catch (error) {
 

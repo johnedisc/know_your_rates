@@ -37,13 +37,13 @@ const handleFormSubmission = (event) => {
   handleAPI(transaction);
 };
 
-const printElements = (transactionObj) => {
+export const printElements = (transactionObj) => {
   document.querySelector('#baseCurrency').innerText = '';
   document.querySelector('#targetCurrency').innerText = '';
   document.querySelector('#response').innerText = `the converted value is ${transactionObj.convertedValue} ${transactionObj.targetCurrency} from ${transactionObj.quantity} ${transactionObj.baseCurrency}`;
 };
 
-const printError = (error) => {
+export const printError = (error) => {
   document.querySelector('#response').innerText = error;
 };
 
@@ -63,7 +63,7 @@ window.addEventListener('load', () => {
     });
   });
 
-targetCurrencyOptions.forEach(el => {
+  targetCurrencyOptions.forEach(el => {
     el.addEventListener('click', event => {
       const selectEl = document.createElement('select');
       selectEl.append(event.target);
@@ -71,7 +71,7 @@ targetCurrencyOptions.forEach(el => {
       document.querySelector('form').append(selectEl);
     });
   });
-  
+
   document.querySelector('#formBtn').addEventListener('click', () => {
     try {
       if (!document.querySelector('select#baseCurrencySelectElement') || !document.querySelector('select#targetCurrencySelectElement')) {
