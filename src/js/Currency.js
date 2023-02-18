@@ -6,13 +6,11 @@ export class CurrencyService {
     return this.parseJSON(response);
   }
 
-  static async countryCode() {
-    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
-    return this.parseJSON(response);
-  }
-
-  static async parseJSON(fetch) {
+  static async fetchData(code) {
     try {
+      if (code === '') {
+        const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
+      }
       const jsonResponse = await fetch.json();
       if (!fetch.ok) {
         const errMsg = `${fetch.status}, ${jsonResponse['error-type']}`; 
@@ -21,7 +19,7 @@ export class CurrencyService {
         return jsonResponse;
       }
     } catch (error) {
-      
+
       return error;
     }
   }

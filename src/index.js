@@ -10,7 +10,7 @@ const calculate = (jsonfiedResponse,transactionObj) => {
 }
 
 const handleAPI = async (transactionObj) => {
-  const response = await CurrencyService.currencyApiCall(transactionObj.baseCurrency);
+  const response = await CurrencyService.fetchData(transactionObj.baseCurrency);
   if (response) {
     transactionObj.convertedValue = await calculate(response,transactionObj);
     printElements(transactionObj);
