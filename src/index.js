@@ -20,15 +20,20 @@ const handleAPI = async (transactionObj) => {
 }
 
 // UI Logic
-const handleFormSubmission = (transaction) => {
+const handleFormSubmission = async (transaction) => {
   event.preventDefault();
   // read in usr data from form
   transaction.quantity = parseInt(document.querySelector('#quantity').value);
   document.querySelector('#quantity').value = null;
   
-  handleAPI(transaction);
+  await handleAPI(transaction);
+   
+  document.getElementById('baseCurrency').innerText = '';
+  document.getElementById('targetCurrency').innerText = '';
   const grabSelectEl = document.querySelectorAll('form > select');
   grabSelectEl.forEach(el => el.parentElement.removeChild(el));
+  transaction.baseCurrency = null;
+  transaction.targetCurrency = null;
 };
 
 export const printElements = (transactionObj) => {
