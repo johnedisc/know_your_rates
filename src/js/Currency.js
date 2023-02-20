@@ -1,29 +1,20 @@
 
 export class CurrencyService {
 
-//  static async currencyApiCall(baseCurrency) {
-//    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`);
-//    return this.parseJSON(response);
-//  }
-//
-//  static async countryCode() {
-//    const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
-//    return this.parseJSON(response);
-//  }
-
   static async fetchData(code) {
     try {
-      let response;
+      let apiResponse;
       //countryCode or convert numbers
       if (!code) {  
-        response = await fetch(`https://v.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
+        apiResponse = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
+        console.log(apiResponse);
       } else {
-        response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${code}`);
+        apiResponse = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${code}`);
       }
-      const jsonfiedResponse = await response.json();
+      const jsonfiedResponse = await apiResponse.json();
 
       if (jsonfiedResponse.result === "error") {
-        const errMsg = `${response.status}, ${jsonfiedResponse['error-type']}`; 
+        const errMsg = `${apiResponse.status}, ${jsonfiedResponse['error-type']}`; 
         throw new Error(errMsg);
       } else {
         return jsonfiedResponse

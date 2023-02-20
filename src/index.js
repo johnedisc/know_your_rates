@@ -20,21 +20,17 @@ const handleAPI = async (transactionObj) => {
 }
 
 // UI Logic
-const handleFormSubmission = (event) => {
+const handleFormSubmission = (transaction) => {
   event.preventDefault();
-  console.log(event);
   // read in usr data from form
-  let quantityVal = parseInt(document.querySelector('#quantity').value);
-  let baseCurrencyVal = document.querySelector('#baseCurrencySelectElement').value;
-  let targetCurrencyVal = document.querySelector('#targetCurrencySelectElement').value;
+  transaction.quantity = parseInt(document.querySelector('#quantity').value);
   document.querySelector('#quantity').value = null;
-  document.querySelector('#baseCurrencySelectElement').value = null;
-  document.querySelector('#targetCurrencySelectElement').value = null;
-
-  // store usr data in object
-  const transaction = new CurrencyTransaction(baseCurrencyVal,targetCurrencyVal,quantityVal);
+  
   console.log(transaction);
   handleAPI(transaction);
+  const grabSelectEl = document.querySelectorAll('form > select');
+  console.log(grabSelectEl);
+  grabSelectEl.forEach(el => el.parentElement.removeChild(el));
 };
 
 export const printElements = (transactionObj) => {
@@ -49,40 +45,56 @@ export const printError = (error) => {
 
 window.addEventListener('load', () => {
 
+  // store usr data in object
+  const transaction = new CurrencyTransaction();
+
   document.getElementById('baseCurrencyBtn').addEventListener('click', divLoop);
   document.getElementById('targetCurrencyBtn').addEventListener('click', divLoop);
   const baseCurrencyOptions = document.querySelectorAll('#baseCurrency');
   const targetCurrencyOptions = document.querySelectorAll('#targetCurrency');
 
   baseCurrencyOptions.forEach(el => {
+    
     el.addEventListener('click', event => {
-      const selectEl = document.createElement('select');
-      selectEl.append(event.target);
-      selectEl.setAttribute('id','baseCurrencySelectElement');
-      document.querySelector('form').append(selectEl);
+      if (!transaction.baseCurrency) {
+        event.target.classList.add('selected');
+        const selectEl = document.createElement('select');
+        const optionEl = document.createElement('option');
+        optionEl.setAttribute('value',`${event.target.attributes[0].value}`);
+        optionEl.classList.add('baseCurrency');
+        selectEl.append(optionEl);
+        selectEl.setAttribute('id','baseCurrencySelectElement');
+        document.querySelector('form').append(selectEl);
+        transaction.baseCurrency = event.target.attributes[0].value;
+      }
     });
   });
 
   targetCurrencyOptions.forEach(el => {
     el.addEventListener('click', event => {
-      const selectEl = document.createElement('select');
-      selectEl.append(event.target);
-      selectEl.setAttribute('id','targetCurrencySelectElement');
-      document.querySelector('form').append(selectEl);
+      if (!transaction.targetCurrency) {
+        event.target.classList.add('selected');
+        const selectEl = document.createElement('select');
+        const optionEl = document.createElement('option');
+        optionEl.setAttribute('value',`${event.target.attributes[0].value}`);
+        optionEl.classList.add('targetCurrency');
+        selectEl.append(optionEl);
+        selectEl.setAttribute('id','targetCurrencySelectElement');
+        document.querySelector('form').append(selectEl);
+        transaction.targetCurrency = event.target.attributes[0].value;
+      }
     });
   });
 
   document.querySelector('#formBtn').addEventListener('click', () => {
-    try {
-      if (!document.querySelector('select#baseCurrencySelectElement') || !document.querySelector('select#targetCurrencySelectElement')) {
-        throw new Error('please select a base currency and a target currency before submitting your request'); 
-      } else if (!document.querySelector('input').value) {
-        throw new Error('please enter a quantity');
-      }
-      handleFormSubmission(event);
-    } catch (error) {
-      printError(error);
+    if (!document.querySelector('select#baseCurrencySelectElement') || !document.querySelector('select#targetCurrencySelectElement')) {
+      let errSelect = new Error('please select a base currency and a target currency before submitting your request');
+      printError(errSelect); 
+    } else if (!document.querySelector('input').value) {
+      let errInput = new Error('please enter a quantity')
+      printError(errInput); 
     }
+    handleFormSubmission(transaction);
   });
 
 });

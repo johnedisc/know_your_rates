@@ -82,12 +82,7 @@ input {
   font-weight: 700;
 }
 
-#baseCurrency>option:hover, #targetCurrency>option:hover {
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-#baseCurrency>option:checked, #targetCurrency>option:checked {
+#baseCurrency>div:hover, #targetCurrency>div:hover, .selected {
   font-size: 2rem;
   font-weight: 600;
 }
