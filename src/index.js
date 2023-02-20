@@ -26,10 +26,8 @@ const handleFormSubmission = (transaction) => {
   transaction.quantity = parseInt(document.querySelector('#quantity').value);
   document.querySelector('#quantity').value = null;
   
-  console.log(transaction);
   handleAPI(transaction);
   const grabSelectEl = document.querySelectorAll('form > select');
-  console.log(grabSelectEl);
   grabSelectEl.forEach(el => el.parentElement.removeChild(el));
 };
 

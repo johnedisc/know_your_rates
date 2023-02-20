@@ -7,7 +7,6 @@ export class CurrencyService {
       //countryCode or convert numbers
       if (!code) {  
         apiResponse = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`);
-        console.log(apiResponse);
       } else {
         apiResponse = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${code}`);
       }
